@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ConcessionEase Login/Register</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Jost', sans-serif;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+            overflow: hidden;
+        }
+
+        .main {
+            width: 350px;
+            height: 500px;
+            background: red;
+            overflow: hidden;
+            background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38") no-repeat center/ cover;
+            border-radius: 10px;
+            box-shadow: 5px 20px 50px #000;
+            margin-left: 40%;
+
+        }
+
+        #chk {
+            display: none;
+        }
+
+        .signup {
+            position: relative;
+            width: 100%;
+            height: 550px;
+            overflow-y: auto;
+        }
+
+        .signup::-webkit-scrollbar {
+            display: none;
+        }
+
+        label {
+            color: #fff;
+            font-size: 2.3em;
+            justify-content: center;
+            display: flex;
+            margin: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: .5s ease-in-out;
+        }
+
+        input {
+            width: 75%;
+            height: 13px;
+            background: #e0dede;
+            justify-content: center;
+            display: flex;
+            margin: 20px auto;
+            padding: 12px;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #yrs::-webkit-calendar-picker-indicator,
+        #dept::-webkit-calendar-picker-indicator {
+            display: none !important;
+        }
+
+        .default-date::-webkit-datetime-edit-month-field { color: grey; }
+        .default-date::-webkit-datetime-edit-day-field { color: grey; }
+        .default-date::-webkit-datetime-edit-year-field { color: grey; }
+        .default-date::-webkit-datetime-edit-text { color: grey; }
+
+        ::-webkit-calendar-picker-indicator {
+            opacity: 0.4;
+        }
+
+        #has-date::-webkit-datetime-edit-month-field {
+            color: black;
+        }
+
+        #has-date::-webkit-datetime-edit-day-field {
+            color: black;
+        }
+
+        #has-date::-webkit-datetime-edit-year-field {
+            color: black;
+        }
+
+        #has-date::-webkit-datetime-edit-text {
+            color: black;
+        }
+
+        button {
+            width: 60%;
+            height: 40px;
+            margin: 10px auto;
+            justify-content: center;
+            display: block;
+            color: #fff;
+            background: #573b8a;
+            font-size: 1em;
+            font-weight: bold;
+            margin-top: 30px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            transition: .2s ease-in;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6d44b8;
+        }
+
+        .login {
+            height: 460px;
+            background: #eee;
+            border-radius: 60% / 10%;
+            transform: translateY(-180px);
+            transition: .8s ease-in-out;
+        }
+
+        .login label {
+            color: #573b8a;
+            transform: scale(.6);
+        }
+
+        #chk:checked~.login {
+            transform: translateY(-500px);
+        }
+
+        #chk:checked~.login label {
+            transform: scale(1);
+        }
+
+        #chk:checked~.signup label {
+            transform: scale(.6);
+        }
+
+        .l {
+            margin: 50px;
+        }
+
+        #heading {
+
+            margin-left: 80px;
+            margin-top: 30px;
+
+        }
+
+        #product {
+            margin-left: 730px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+    </style>
+</head>
+
+<body>
+    <br>
+    <div>
+        <label for="" id="heading">ConcessionEase</label>
+        <h5 style="color:white" id="product">A product by MG</h5>
+    </div>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <form id="verification" action="/railwayconcession/display" method="POST"
+                enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="action1" value="verification">
+                <label for="chk" aria-hidden="true">Verify</label>
+                <label for="" style="font-size: medium;">Personal Information</label>
+                <input type="text" name="id" placeholder="Student ID" required>
+                <input type="text" name="name" placeholder="Name as mentioned in college records" required>
+                <input type="date" id="bdate" class='default-date' name="birthdate" placeholder="Birthdate">
+                <label for="" style="font-size: medium;">Contact Information</label>
+                <input type="textbox" name="address" placeholder="Address" required>
+                <input type="text" name="phone number" placeholder="Phone Number" required>
+                <label for="" style="font-size: medium;">Academic Information</label>
+                <input type="text" list="departments" placeholder="--Department--" id="dept" name="dept">
+                <datalist id="departments" name="dept" required>
+                    <option value="Computer Science Engineering(AIML)">
+                    <option value="Computer Engineering">
+                    <option value="Compter Science Engineering(Data Sceince)">
+                    <option value="Mechanical Engineering">
+                    <option value="Civil Engineering">
+                </datalist>
+                <input type="text" list="academic_years" placeholder="--Academic Year--" id="yrs" name="year">
+                <datalist id="academic_years" name="year" required>
+                    <option value="First Year Engineering">
+                    <option value="Second Year Engineering">
+                    <option value="Third Year Engineering">
+                    <option value="Bachelor Year Engineering">
+                </datalist>
+                <button id="verify" type="button">Verify</button><br><br><br><br><br><br><br>
+            </form>
+
+            <form action="/railwayconcession/display" style="display: none;" id="signup" method="POST">
+                <input type="hidden" name="action1" value="signUp">
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" name="username" placeholder="User name" required>
+                <input type="password" name="pswd" placeholder="Create Password" required>
+                <p id="exists" style="color: yellow;"></p>
+                <button type="button" id="reg">Register</button>
+            </form>
+            <label style="display: none;" id="ineligible">You are not eligible for getting Railway Concession as your
+                records are not found in the college Database</label>
+        </div>
+
+        <div class="login" id="log_in">
+            <form action="/railwayconcession/display" id="login" method="POST">
+                <input type="hidden" name="action1" value="Login">
+                <label for="chk" aria-hidden="true" class="l">Login</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="pswd" placeholder="Password" required>
+                <button type="button" id="lg">Login</button>
+            </form><br>
+            <h4 style="color: red; display:none" id="notfound">Account Not found, please input correct username or
+                password</h4>
+        </div>
+        <label for="" id="error">Some Unexpected Error Occured!</label>
+    </div>
+
+    <script>
+
+        const btn = document.getElementById("verify");
+        const btn1 = document.getElementById("lg");
+        const btn2 = document.getElementById("reg");
+
+        btn.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const form = document.getElementById('verification');
+            const formData = new URLSearchParams(new FormData(form));
+
+            // Log form data for debugging
+            for (let [name, value] of formData) {
+                console.log(`${name}: ${value}`);
+            }
+
+            // Send form data to the servlet
+            fetch('/railwayconcession/display', {
+                method: 'POST',
+                body: formData.toString(),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+                .then((response) => {
+                    // Check if the form submission is successful
+                    if (!response.ok) {
+                        throw new Error('Error submitting form: ' + response.statusText);
+                    }
+                    return response.json(); // Read the response as json
+                })
+                .then((serverMessage) => {
+
+                    console.log('Server Response:', serverMessage);
+
+                    if (serverMessage.verified === "yes") {
+                        let login = document.getElementById("log_in");
+                        let signup = document.getElementById("signup");
+                        signup.style.display = "block";
+                        form.style.display = "none";
+                        login.style.display = "none";
+                    } else if (serverMessage.verified === "no") {
+                        let login = document.getElementById("log_in");
+                        let label = document.getElementById("ineligible");
+                        form.style.display = "none";
+                        login.style.display = "none";
+                        label.style.display = "block";
+                    }
+                    else if (serverMessage.verified === "Error") {
+                        let error = document.getElementById("error");
+                        error.style.display = "block";
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error sending data:', error);
+                });
+        });
+
+        btn1.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const form1 = document.getElementById('login');
+            const formData = new URLSearchParams(new FormData(form1));
+
+            // Log form data for debugging
+            for (let [name, value] of formData) {
+                console.log(`${name}: ${value}`);
+            }
+
+            // Send form data to the servlet
+            fetch('/railwayconcession/display', {
+                method: 'POST',
+                body: formData.toString(),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+                .then((response) => {
+                    // Check if the form submission is successful
+                    if (!response.ok) {
+                        throw new Error('Error submitting form: ' + response.statusText);
+                    }
+                    return response.json(); // Read the response as json
+                })
+                .then((serverMessage) => {
+
+                    console.log('Server Response:', serverMessage);
+
+                    if (serverMessage.account === "not found") {
+                        let notfound = document.getElementById("notfound");
+                        notfound.style.display = "block";
+                    }
+                    else if (serverMessage.account === "found") {
+                        window.location.href = "http://localhost:8080/railwayconcession/page2.html";
+                    }
+                    else if (serverMessage.account === "Error") {
+                        let error = document.getElementById("error");
+                        error.style.display = "block";
+                    }
+
+                })
+                .catch((error) => {
+                    console.error('Error sending data:', error);
+                });
+        });
+
+        btn2.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const form2 = document.getElementById('signup');
+            const formData = new URLSearchParams(new FormData(form2));
+
+            // Log form data for debugging
+            for (let [name, value] of formData) {
+                console.log(`${name}: ${value}`);
+            }
+
+            // Send form data to the servlet
+            fetch('/railwayconcession/display', {
+                method: 'POST',
+                body: formData.toString(),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            })
+                .then((response) => {
+                    // Check if the form submission is successful
+                    if (!response.ok) {
+                        throw new Error('Error submitting form: ' + response.statusText);
+                    }
+                    return response.json(); // Read the response as json
+                })
+                .then((serverMessage) => {
+
+                    console.log('Server Response:', serverMessage);
+
+                    if (serverMessage.registered === "account exists") {
+                        let exists = document.getElementById("exists");
+                        exists.innerHTML = "Account Already Exists.";
+                        exists.style.display = "block";
+                    }
+                    else if (serverMessage.registered === "Error") {
+                        let error = document.getElementById("error");
+                        error.style.display = "block";
+                    }
+                    else if (serverMessage.registered === 'done') {
+                        window.location.href = 'index.html';
+                    }
+                    else if (serverMessage.registered === 'username exists') {
+
+                        let exists = document.getElementById("exists");
+                        exists.innerHTML = "Username is Already Taken.";
+                        exists.style.display = "block";
+                    }
+
+                })
+                .catch((error) => {
+                    console.error('Error sending data:', error);
+                });
+        });
+
+        const dateInput = document.getElementById("bdate");
+
+        dateInput.addEventListener("input", function () {
+            if (dateInput.value) {
+                // Add class when a date is entered
+                dateInput.classList.add("has-date");
+            } else {
+                // Remove class when the input is empty
+                dateInput.classList.remove("has-date");
+            }
+        });
+
+    </script>
+</body>
+
+</html>
