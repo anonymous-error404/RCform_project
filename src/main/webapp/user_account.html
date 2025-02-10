@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user account</title>
+</head>
+
+<body>
+    <form action="/railwayconcession/display" id="user_acc">
+        <input type="hidden" name="action1" value="user_account">
+    </form>
+
+    <div>
+        <label for="" id="username"></label>
+        <div id="user_info"></div>
+    </div>
+
+    <script>
+        window.onload = function () {
+
+            const form = document.getElementById('user_acc');
+            const formData = new URLSearchParams(new FormData(form));
+
+            fetch('/railwayconcession/display', {
+                method: 'POST',
+                body: formData.toString(),
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle JSON data
+                    if (data.error) {
+                        console.error(data.error); // Handle error if no session or user data
+                    } else {
+                        let un = document.getElementById("username");
+                        let ud = document.getElementById("user_info");
+
+                        un.innerHTML = "<h1 id='uname'>" + data.uname + "</h1><button id='uname_edit'>Edit</button><br><br>"
+                        ud.innerHTML = "<h4 id='sid'> Student ID : " + data.sid + "</h4><br><br>" + "<h4 id='sname'> Name : " + data.sname + "</h4><br><br>" + "<h4 id='bdate'> Birthdate" + data.bdate + "</h4><br><br>" + "<h4 id='add'> Address : " + data.add + "</h4> <button id='edit_add'>Edit</button> <br><br>" + "<h4 id='phno'> Phone Number : " + data.phno + "</h4> <button id='edit_phno'>Edit</button> <br><br>" + "<h4 id='dept'> Department : " + data.dept + "</h4> <button id='edit_dept'>Edit</button> <br><br>" + "<h4 id='yr'> Year of Stduy : " + data.yr + "</h4><button id='edit_yr'>Edit</button>";
+
+                    }
+                })
+        }
+
+        let uname_edit = document.getElementById("uname_edit");
+        let add_edit = document.getElementById("edit_add");
+        let phno_edit = document.getElementById("edit_phno");
+        let dept_edit = document.getElementById("edit_dept");
+        let yr_edit = document.getElementById("edit_yr");
+
+        let uname = document.getElementById("uname");
+        let add = document.getElementById("add");
+        let phno = document.getElementById("phno");
+        let dept = document.getElementById("dept");
+        let yr = document.getElementById("yr");
+
+        uname_edit.addEventListener('click', function(){
+        if (uname_edit.innerText = "Edit") {
+                uname_edit.innerText = "Confirm";
+                uname.innerHTML = '<form action="" id="change_uname"><input type="hidden" name="action1" value="change_uname"><input type="text" name="edited_username" id="edit_uname_input"></form>';;
+        }
+        else if (uname_edit.innerText = "Confirm") {
+
+            console.log(document.getElementById("edit_uname_input").value);
+
+            uname_edit.addEventListener('click', (event) => {
+
+                uname.innerHTML = "Your edited username will be displayed once your login again."
+                const form = document.getElementById('change_uname');
+                const formData = new URLSearchParams(new FormData(form));
+                console.log(formData);
+
+                fetch('/railwayconcession/display', {
+                    method: 'POST',
+                    body: formData.toString(),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                })
+            }
+
+            )
+        }})
+
+        add_edit.addEventListener('click', function(){
+        if (add_edit.innerText = "Edit") {
+                add_edit.innerText = "Confirm";
+                add.innerHTML = '<form action="" id="change_add"><input type="hidden" name="action1" value="change_add"><input type="text" name="edited_add" id="edit_add_input"></form>';
+        }
+        else if (add_edit.innerText = "Confirm") {
+
+            console.log(document.getElementById("edit_add_input").value);
+
+            add_edit.addEventListener('click', (event) => {
+
+                add.innerHTML = "Your edited address will be displayed when you login again."
+                const form = document.getElementById('change_add');
+                const formData = new URLSearchParams(new FormData(form));
+                console.log(formData);
+
+                fetch('/railwayconcession/display', {
+                    method: 'POST',
+                    body: formData.toString(),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                })
+            }
+
+            )
+        }});
+
+        phno_edit.addEventListener('click', function() {
+        if (phno_edit.innerText = "Edit") {
+                phno_edit.innerText = "Confirm";
+                phno.innerHTML = '<form action="" id="change_phno"><input type="hidden" name="action1" value="change_phno"><input type="text" name="edited_phno" id="edit_phno_input"></form>';
+        }
+        else if (phno_edit.innerText = "Confirm") {
+
+            console.log(document.getElementById("edit_phno_input").value);
+
+            phno_edit.addEventListener('click', (event) => {
+
+                phno.innerHTML = "Your edited phone number will be displayed when you login again."
+                const form = document.getElementById('change_phno');
+                const formData = new URLSearchParams(new FormData(form));
+                console.log(formData);
+
+                fetch('/railwayconcession/display', {
+                    method: 'POST',
+                    body: formData.toString(),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                })
+            }
+
+            )
+        }});
+
+        dept_edit.addEventListener('click', function() {
+        if (dept_edit.innerText = "Edit") {
+                dept_edit.innerText = "Confirm";
+                dept.innerHTML = '<form action="" id="change_dept"><input type="hidden" name="action1" value="change_dept"><input type="text" name="edited_dept" id="edit_dept_input"></form>';
+        }
+        else if (dept_edit.innerText = "Confirm") {
+
+            console.log(document.getElementById("edit_dept_input").value);
+
+            dept_edit.addEventListener('click', (event) => {
+
+                dept.innerHTML = "Your edited department will be displayed when you login again."
+                const form = document.getElementById('change_dept');
+                const formData = new URLSearchParams(new FormData(form));
+                console.log(formData);
+
+                fetch('/railwayconcession/display', {
+                    method: 'POST',
+                    body: formData.toString(),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                })
+            }
+
+            )
+        }});
+
+        yr_edit.addEventListener('click', function() {
+        if (yr_edit.innerText = "Edit") {
+                yr_edit.innerText = "Confirm";
+                yr.innerHTML = '<form action="" id="change_yr"><input type="hidden" name="action1" value="change_yr"><input type="text" name="edited_yr" id="edit_yr_input"></form>';
+        }
+        else if (yr_edit.innerText = "Confirm") {
+
+            console.log(document.getElementById("edit_yr_input").value);
+
+            yr_edit.addEventListener('click', (event) => {
+
+                yr.innerHTML = "Your edited year of study will be displayed when you login again";
+                const form = document.getElementById('change_yr');
+                const formData = new URLSearchParams(new FormData(form));
+                console.log(formData);
+
+                fetch('/railwayconcession/display', {
+                    method: 'POST',
+                    body: formData.toString(),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                })
+            }
+
+            )
+        }});
+
+    </script>
+</body>
+
+</html>
